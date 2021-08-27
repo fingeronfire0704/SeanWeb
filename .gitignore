@@ -6,6 +6,9 @@ Gemfile.lock
 package-lock.json
 node_modules/
 
+# Sean Added
+*.ipynb
+
 ### macOS ###
 *.DS_Store
 .AppleDouble
