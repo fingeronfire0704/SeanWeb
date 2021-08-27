@@ -24,6 +24,7 @@ Once we have the clustering labels produced by the algorithm, we find the centro
 
 <!-- >Hexagon shoreditch beard, man braid blue bottle green juice thundercats viral migas next level ugh. Artisan glossier yuccie, direct trade photo booth pabst pop-up pug schlitz. -->
 >We experimented with several clustering algorihtms, kNN, DBSCAN, hDBSCAN. Based on the experiment we finally choose the hDBSCAN as the algorithm we use to achieve our goal based on the following advantages:
+
 * the only hyper-paramter we need to tune here is the 'min_cluster_size', which is easier to tune compared to DBSCAN, kNN etc. 
 * the hDBSCAN consider the noise, that makes it easier to identify the clusters
 
@@ -32,7 +33,7 @@ We can then visualize our clustering results with the aid of Google GeoViz. Goog
 
 ![I and My friends]({{site.baseurl}}/assets/img/region_query.jpg)
 
-The next steps are:
+Once this work is done, the following tasks are:
 
 <!-- * Hexagon shoreditch beard
 * Intelligentsia narwhal austin
