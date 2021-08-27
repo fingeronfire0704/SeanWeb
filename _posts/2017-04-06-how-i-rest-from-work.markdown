@@ -19,39 +19,30 @@ Before modeling, the division work of the operational region should be done firs
 ![I and My friends]({{site.baseurl}}/assets/img/region_data.jpg)
 
 <!-- Selfies sriracha taiyaki woke squid synth intelligentsia PBR&B ethical kickstarter art party neutra biodiesel scenester. Health goth kogi VHS fashion axe glossier disrupt, vegan quinoa. Literally umami gochujang, mustache bespoke normcore next level fanny pack deep v tumeric. Shaman vegan affogato chambray. Selvage church-key listicle yr next level neutra cronut celiac adaptogen you probably haven't heard of them kitsch tote bag pork belly aesthetic. Succulents wolf stumptown art party poutine. Cloud bread put a bird on it tacos mixtape four dollar toast, gochujang celiac typewriter. Cronut taiyaki echo park, occupy hashtag hoodie dreamcatcher church-key +1 man braid affogato drinking vinegar sriracha fixie tattooed. Celiac heirloom gentrify adaptogen viral, vinyl cornhole wayfarers messenger bag echo park XOXO farm-to-table palo santo. -->
-Once we have the clustering labels produced by the algorithm, we find the centroids within each clusters, and then use those centroids to construct the boundaries between each cluster with Thiesson polygons, which means that the whole operational regions are transformed into a Voronoi diagram based on the scooter rent data. The distances from the two centroid of the clusters to one side of the Thiessen polygon are identical.
+We experimented with several clustering algorihtms, kNN, DBSCAN, hDBSCAN. Based on the experiment we finally choose the hDBSCAN as the algorithm we use to achieve our goal based on the following advantages:
+
+* Easier to identify the clusters: 
+The hDBSCAN is density-based and will identify the noise spots that are mostly spread over the space between the clusters so the algorithm can easily detect clusters with high density rather than combine multiple clusters into one. 
+* Easier for engineers to tune the model: 
+The only hyper-paramter we need to tune here is the 'min_cluster_size', which is easier to tune compared to DBSCAN, kNN etc. 
+
+Once we have the clustering labels produced by the hDBSCAN algorithm, we find the centroids within each clusters, and then use those centroids to construct the boundaries between each cluster with Thiesson polygons, which means that the whole operational regions are transformed into a Voronoi diagram based on the scooter rent data. The distances from the two centroid of the clusters to one side of the Thiessen polygon are identical.
+<!-- how you filter your data based on time? -->
 
 ![I and My friends]({{site.baseurl}}/assets/img/region_voronoi.jpg)
-
-We experimented with several clustering algorihtms, kNN, DBSCAN, hDBSCAN. Based on the experiment we finally choose the hDBSCAN as the algorithm we use to achieve our goal based on the following advantages:
-<!-- how you filter your data based on time? -->
-* Easier to identify the clusters: the hDBSCAN is density-based and will identify the noise spots that are mostly spread over the space between the clusters so the algorithm can easily detect clusters with high density rather than combine multiple clusters into one. 
-* Easier for engineers to tune the model: the only hyper-paramter we need to tune here is the 'min_cluster_size', which is easier to tune compared to DBSCAN, kNN etc. 
 
 Lastly, we can then visualize our clustering results with the aid of Google GeoViz. Google GeoViz is a web-based visulization tool which can extract the data from Google BigQuery. And it provides the GIS functions that help us to do more fantastic works. As you can see below, we could apply the hue to visualiezed diagram as the density level of each polygons (sub-regions) as the picture shown on the front page. And the example query is shown below:
 
 <!-- >Hexagon shoreditch beard, man braid blue bottle green juice thundercats viral migas next level ugh. Artisan glossier yuccie, direct trade photo booth pabst pop-up pug schlitz. -->
->WITH calcpt AS (
-    SELECT ST_GeoPoint(lng, lat) AS point, district
-    FROM `dataanalyst-188909.wemoanalystics.rent_path`
-    LIMIT 10
-), calcpg AS (
-    SELECT ST_GeogFromGeoJson(geometry) AS polygon, ST_WITHIN(calcpt.point,
-    ST_GeoFromGeoJson(geometry)) AS judge, properties.*, district
-    FROM `dataanalyst-188909.wemoanalytics.sean_tesst_geojson`, calcpt
-)
-SELECT * FROM calcpg WHERE judge = true
-
 >WITH calcpt AS (\
-    SELECT ST_GeoPoint(lng, lat) AS point, district
-    FROM `dataanalyst-188909.wemoanalystics.rent_path`
-    LIMIT 10
-), calcpg AS (
-    SELECT ST_GeogFromGeoJson(geometry) AS polygon, ST_WITHIN(calcpt.point,
-    ST_GeoFromGeoJson(geometry)) AS judge, properties.*, district
-    FROM `dataanalyst-188909.wemoanalytics.sean_tesst_geojson`, calcpt
-)
->SELECT * FROM calcpg WHERE judge = true
+    SELECT ST_GeoPoint(lng, lat) AS point, district\
+    FROM 'dataanalyst-188909.wemoanalystics.rent_path'\
+    LIMIT 10\
+), calcpg AS (\
+    SELECT ST_GeogFromGeoJson(geometry) AS polygon, ST_WITHIN(calcpt.point, ST_GeoFromGeoJson(geometry)) AS judge, properties.*, district\
+    FROM 'dataanalyst-188909.wemoanalytics.sean_tesst_geojson', calcpt\
+)\
+SELECT * FROM calcpg WHERE judge = true
 
 <!-- Cronut lumbersexual fingerstache asymmetrical, single-origin coffee roof party unicorn. Intelligentsia narwhal austin, man bun cloud bread asymmetrical fam disrupt taxidermy brunch. Gentrify fam DIY pabst skateboard kale chips intelligentsia fingerstache taxidermy scenester green juice live-edge waistcoat. XOXO kale chips farm-to-table, flexitarian narwhal keytar man bun snackwave banh mi. Semiotics pickled taiyaki cliche cold-pressed. Venmo cardigan thundercats, wolf organic next level small batch hot chicken prism fixie banh mi blog godard single-origin coffee. Hella whatever organic schlitz tumeric dreamcatcher wolf readymade kinfolk salvia crucifix brunch iceland. Literally meditation four loko trust fund. Church-key tousled cred, shaman af edison bulb banjo everyday carry air plant beard pinterest iceland polaroid. Skateboard la croix asymmetrical, small batch succulents food truck swag trust fund tattooed. Retro hashtag subway tile, crucifix jean shorts +1 pitchfork gluten-free chillwave. Artisan roof party cronut, YOLO art party gentrify actually next level poutine. Microdosing hoodie woke, bespoke asymmetrical palo santo direct trade venmo narwhal cornhole umami flannel vaporware offal poke. -->
 Once this work is done, the following tasks are:
