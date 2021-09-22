@@ -11,7 +11,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: Sean Lin # add your name
 author-img: sean-lin.jpg # add your photo
-about-author: A Data Science graduate student actively seeking machine learning engineer positions. Recently focusing on builidng machine learning/deep learning products. Always hungry to learn. ---- <br/>"There is no free lunch." # add description
+about-author: A Data Science graduate student actively seeking machine learning engineer positions. <br/><br/>Recently focusing on builidng machine learning/deep learning products. Always hungry to learn. <br/><br/>"There is no free lunch." # add description
 social-twitter: # add your Twitter handle
 social-facebook: # add your Facebook handle
 social-github: fingeronfire0704 # add your Github handle
