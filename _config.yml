@@ -11,7 +11,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: Sean Lin # add your name
 author-img: sean-lin.jpg # add your photo
-about-author: A Data Science graduate student focusing on builidng machine learning/deep learning products. Always hungry to learn. My favorite quote, 'There is no free lunch.' # add description
+about-author: A Data Science graduate student focusing on builidng machine learning/deep learning products. \nAlways hungry to learn. \n"There is no free lunch." # add description
 social-twitter: # add your Twitter handle
 social-facebook: # add your Facebook handle
 social-github: fingeronfire0704 # add your Github handle
