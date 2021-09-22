@@ -1,4 +1,4 @@
-title: Hello, visitor! I'm Shawn Lin.
+title: Hello, visitor! I'm Sean Lin.
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -12,7 +12,7 @@ site-twitter: #if your site has a twitter account, enter it here
 author: Sean Lin # add your name
 author-img: sean-lin.jpg # add your photo
 about-author: 
-A Data Science graduate student focusing on builidng machine learning/deep learning products. Always hungry to learn. ---- <br/>"There is no free lunch." # add description
+A Data Science graduate student actively seeking machine learning engineer positions. Recently focusing on builidng machine learning/deep learning products. Always hungry to learn. ---- <br/>"There is no free lunch." # add description
 social-twitter: # add your Twitter handle
 social-facebook: # add your Facebook handle
 social-github: fingeronfire0704 # add your Github handle
