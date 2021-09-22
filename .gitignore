@@ -9,9 +9,15 @@ node_modules/
 # Sean Added
 *.ipynb
 assets/img/source/
+*/.DS_Store
+_posts/.DS_Store
+.DS_Store
+.Rhistory
+.hide
+assets/img/.DS_Store
 
 ### macOS ###
-*.DS_Store
+*/.DS_Store
 .AppleDouble
 .LSOverride
 

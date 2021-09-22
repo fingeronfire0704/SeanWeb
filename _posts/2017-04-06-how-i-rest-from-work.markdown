@@ -21,15 +21,15 @@ Before modeling, we need to divide the operational region into sub-regions first
 <!-- Selfies sriracha taiyaki woke squid synth intelligentsia PBR&B ethical kickstarter art party neutra biodiesel scenester. Health goth kogi VHS fashion axe glossier disrupt, vegan quinoa. Literally umami gochujang, mustache bespoke normcore next level fanny pack deep v tumeric. Shaman vegan affogato chambray. Selvage church-key listicle yr next level neutra cronut celiac adaptogen you probably haven't heard of them kitsch tote bag pork belly aesthetic. Succulents wolf stumptown art party poutine. Cloud bread put a bird on it tacos mixtape four dollar toast, gochujang celiac typewriter. Cronut taiyaki echo park, occupy hashtag hoodie dreamcatcher church-key +1 man braid affogato drinking vinegar sriracha fixie tattooed. Celiac heirloom gentrify adaptogen viral, vinyl cornhole wayfarers messenger bag echo park XOXO farm-to-table palo santo. -->
 We experimented with several clustering algorithms, kNN, DBSCAN, hDBSCAN. Based on the experiments, we finally choose the hDBSCAN as the algorithm we use to achieve our goal based on the following advantages:
 
-* Easier to identify the clusters: 
+* Easier to identify the clusters:\
 The hDBSCAN is density-based and will identify the noise spots that mostly spread over the space between the clusters so the algorithm can easily detect clusters with high density rather than combining multiple clusters into one. 
-* Easier for engineers to tune the model: 
+* Easier for engineers to tune the model:\
 The only hyper-parameter we need to tune here is the 'min_cluster_size,' which is easier to tune than DBSCAN, kNN etc. 
 
 Once we have the clustering labels produced by the hDBSCAN algorithm, we find the centroids within each cluster, and then use those centroids to construct the boundaries between each cluster with Thiesson polygons, which means that we transformed the whole operational region into a Voronoi diagram as sub-regions based on the scooter rent data. The distances from the two centroids of the clusters to one side of the Thiessen polygon are identical.
 <!-- how you filter your data based on time? -->
 
-![I and My friends]({{site.baseurl}}/assets/img/region_voronoi.jpg)
+![I and My friends]({{site.baseurl}}/assets/img/regu ion_voronoi.jpg)
 
 Lastly, we can then visualize our clustering results with the aid of Google GeoViz. Google GeoViz is a web-based visualization tool that can extract queries from Google BigQuery. And it provides the GIS functions that help us to do more fantastic works with geometry objects. As you can see below, we could apply the hue to the visualized diagram as the density level of each polygon (sub-regions), as shown on the front page. And the example query is shown below:
 
@@ -51,9 +51,9 @@ Once we've done the operational region division, the following tasks are:
 * Intelligentsia narwhal austin
 * Literally meditation four
 * Microdosing hoodie woke -->
-* Analysis of the scooter inflow/outflow of each polygon
-* The scooter rent prediction of each polygon over time (during the day/week)
-* Build the demand model, and relocation model
+* Analysis of the scooter inflow/outflow of each polygon.
+* The scooter rent prediction of each polygon over time (during the day/week.)
+* Build the demand model, and relocation model.
 
 <!-- Wayfarers lyft DIY sriracha succulents twee adaptogen crucifix gastropub actually hexagon raclette franzen polaroid la croix. Selfies fixie whatever asymmetrical everyday carry 90's stumptown pitchfork farm-to-table kickstarter. Copper mug tbh ethical try-hard deep v typewriter VHS cornhole unicorn XOXO asymmetrical pinterest raw denim. Skateboard small batch man bun polaroid neutra. Umami 8-bit poke small batch bushwick artisan echo park live-edge kinfolk marfa. Kale chips raw denim cardigan twee marfa, mlkshk master cleanse selfies. Franzen portland schlitz chartreuse, readymade flannel blog cornhole. Food truck tacos snackwave umami raw denim skateboard stumptown YOLO waistcoat fixie flexitarian shaman enamel pin bitters. Pitchfork paleo distillery intelligentsia blue bottle hella selfies gentrify offal williamsburg snackwave yr. Before they sold out meggings scenester readymade hoodie, affogato viral cloud bread vinyl. Thundercats man bun sriracha, neutra swag knausgaard jean shorts. Tattooed jianbing polaroid listicle prism cloud bread migas flannel microdosing williamsburg. -->
 <!-- Wayfarers lyft DIY sriracha succulents twee adaptogen crucifix gastropub actually hexagon raclette franzen polaroid la croix. Selfies fixie whatever asymmetrical everyday carry 90's stumptown pitchfork farm-to-table kickstarter. Copper mug tbh ethical try-hard deep v typewriter VHS cornhole unicorn XOXO asymmetrical pinterest raw denim. Skateboard small batch man bun polaroid neutra. Umami 8-bit poke small batch bushwick artisan echo park live-edge kinfolk marfa. Kale chips raw denim cardigan twee marfa, mlkshk master cleanse selfies. Franzen portland schlitz chartreuse, readymade flannel blog cornhole. Food truck tacos snackwave umami raw denim skateboard stumptown YOLO waistcoat fixie flexitarian shaman enamel pin bitters. Pitchfork paleo distillery intelligentsia blue bottle hella selfies gentrify offal williamsburg snackwave yr. Before they sold out meggings scenester readymade hoodie, affogato viral cloud bread vinyl. Thundercats man bun sriracha, neutra swag knausgaard jean shorts. Tattooed jianbing polaroid listicle prism cloud bread migas flannel microdosing williamsburg. -->
