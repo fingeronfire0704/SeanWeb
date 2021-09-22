@@ -16,7 +16,7 @@ Because the scooter is dockless, the customer returns the scooter at a random lo
 Before modeling, we need to divide the operational region into sub-regions first, and then we can do further analysis work on the in-flow/out-flow predictions using machine learning models. Here we use the hDBSCAN (hierarchical Density-Based Spatial Clustering of Application with Noise) as our clustering algorithm to produce different clusters based on the cleaned scooter rent data (geo-spatial data) as shown below.
 
 <!-- ![I and My friends]({{site.baseurl}}/assets/img/we-in-rest.jpg) -->
-![I and My friends]({{site.baseurl}}/assets/img/region_data.jpg)
+![region_data]({{site.baseurl}}/assets/img/region_data.jpg)
 
 <!-- Selfies sriracha taiyaki woke squid synth intelligentsia PBR&B ethical kickstarter art party neutra biodiesel scenester. Health goth kogi VHS fashion axe glossier disrupt, vegan quinoa. Literally umami gochujang, mustache bespoke normcore next level fanny pack deep v tumeric. Shaman vegan affogato chambray. Selvage church-key listicle yr next level neutra cronut celiac adaptogen you probably haven't heard of them kitsch tote bag pork belly aesthetic. Succulents wolf stumptown art party poutine. Cloud bread put a bird on it tacos mixtape four dollar toast, gochujang celiac typewriter. Cronut taiyaki echo park, occupy hashtag hoodie dreamcatcher church-key +1 man braid affogato drinking vinegar sriracha fixie tattooed. Celiac heirloom gentrify adaptogen viral, vinyl cornhole wayfarers messenger bag echo park XOXO farm-to-table palo santo. -->
 We experimented with several clustering algorithms, kNN, DBSCAN, hDBSCAN. Based on the experiments, we finally choose the hDBSCAN as the algorithm we use to achieve our goal based on the following advantages:
@@ -29,7 +29,7 @@ The only hyper-parameter we need to tune here is the 'min_cluster_size,' which i
 Once we have the clustering labels produced by the hDBSCAN algorithm, we find the centroids within each cluster, and then use those centroids to construct the boundaries between each cluster with Thiesson polygons, which means that we transformed the whole operational region into a Voronoi diagram as sub-regions based on the scooter rent data. The distances from the two centroids of the clusters to one side of the Thiessen polygon are identical.
 <!-- how you filter your data based on time? -->
 
-![I and My friends]({{site.baseurl}}/assets/img/regu ion_voronoi.jpg)
+![region_voronoi]({{site.baseurl}}/assets/img/region_voronoi.jpg)
 
 Lastly, we can then visualize our clustering results with the aid of Google GeoViz. Google GeoViz is a web-based visualization tool that can extract queries from Google BigQuery. And it provides the GIS functions that help us to do more fantastic works with geometry objects. As you can see below, we could apply the hue to the visualized diagram as the density level of each polygon (sub-regions), as shown on the front page. And the example query is shown below:
 
