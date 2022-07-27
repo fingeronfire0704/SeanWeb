@@ -31,7 +31,7 @@ Once we have the clustering labels produced by the hDBSCAN algorithm, we find th
 
 ![region_voronoi]({{site.baseurl}}/assets/img/region_voronoi.jpg)
 
-Lastly, we can then visualize our clustering results with the aid of Google GeoViz. Google GeoViz is a web-based visualization tool that can extract queries from Google BigQuery. And it provides the GIS functions that help us to do more fantastic works with geometry objects. We could apply the hue to the visualized diagram as the density level of each polygon (sub-regions), as shown on the front page (the hue setting was not high enough in this figure, but by adjusting it, it could visualize the result pretty well and viewer can receive take away information quickly). And the example query is shown below:
+Lastly, we can then visualize our clustering results with the aid of Google GeoViz. Google GeoViz is a web-based visualization tool that can extract queries from Google BigQuery. And it provides the GIS functions that help us do more fantastic works with geometry objects. We could apply the hue to the visualized diagram as the density level of each polygon (sub-regions), as shown on the front page (the hue setting was not high enough in this figure, but by adjusting it, it could visualize the result pretty well and viewer can receive take away information quickly). And the example query is shown below:
 
 <!-- >Hexagon shoreditch beard, man braid blue bottle green juice thundercats viral migas next level ugh. Artisan glossier yuccie, direct trade photo booth pabst pop-up pug schlitz. -->
 >WITH calcpt AS (\
