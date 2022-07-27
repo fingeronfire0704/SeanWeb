@@ -36,11 +36,11 @@ Lastly, we can then visualize our clustering results with the aid of Google GeoV
 <!-- >Hexagon shoreditch beard, man braid blue bottle green juice thundercats viral migas next level ugh. Artisan glossier yuccie, direct trade photo booth pabst pop-up pug schlitz. -->
 >WITH calcpt AS (\
 &emsp;SELECT ST_GeoPoint(lng, lat) AS point, district\
-&emsp;FROM 'dataanalyst-188909.wemoanalystics.rent_path'\
+&emsp;FROM 'xxx.analystics.rent_path'\
 &emsp;LIMIT 10\
 ), calcpg AS (\
 &emsp;SELECT ST_GeogFromGeoJson(geometry) AS polygon, ST_WITHIN(calcpt.point, ST_GeoFromGeoJson(geometry)) AS judge, properties.*, district\
-&emsp;FROM 'dataanalyst-188909.wemoanalytics.sean_tesst_geojson', calcpt\
+&emsp;FROM 'xxx.analytics.region_geojson', calcpt\
 )\
 SELECT * FROM calcpg WHERE judge = true
 
